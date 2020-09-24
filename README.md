@@ -13,6 +13,8 @@ It divides waste into three categories:
 
 Consider forking and making a pull request, or opening an issue. 😉
 
+Folder icon by [flaticon](https://www.flaticon.com/authors/dinosoftlabs)
+
 ------
 
 Made with ❤️ and javascript.
