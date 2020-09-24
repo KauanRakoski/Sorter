@@ -16,9 +16,12 @@ const visualRecognition = new VisualRecognitionV3({
 app.get('/api/:l', (req, res) => {
   let url = `https://firebasestorage.googleapis.com/v0/b/sorterapp1.appspot.com/o/images%${req.params.l + "?alt=" + req.query.alt + "&token" + req.query.token}`
   
+  var classifier_ids = ["DefaultCustomModel_236601643"];
 
   var params = {
     url:  url,
+    classifier_ids: classifier_ids,
+    treshold: 0.1
   };
 
   visualRecognition.classify(params, function (err, response) {
