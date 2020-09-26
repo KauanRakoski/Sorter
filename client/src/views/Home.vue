@@ -1,7 +1,7 @@
 <template>
   <div class="home" >
     
-    <div class="cointainer w-100 pt-5 d-flex justify-content-center align-items-center">
+    <div class="cointainer w-100 pt-5 d-flex flex-column justify-content-center align-items-center">
     <div class='shadow rounded py-4 mt-3 px-3 d-flex flex-column align-items-center'>
 
     <h1 class="mt-5 pb-1 h4 jet">Is this recyclable? Check it out!</h1>
@@ -33,20 +33,18 @@
     name: 'App',
     components: {
       vueDropzone: vue2Dropzone,
-      
     },
     data(){
       return{
-        images: [],
-        dropzoneOptions: {
-          url: "https://httpbin.org/post",
-          thumbnailWidth: 100,
-          thumbnailHeight: 150,
-          addRemovedLinks: false,
-          maxFilesize: 0.5,
-          acceptedFiles: ".png, .jpg, .jpg",
-          dictDefaultMessage: `
-           <span class='h5'>Drop a file.</span> <br><br> <button class='btn btn-success'>Or Browse</button>`,
+          dropzoneOptions: {
+            url: "https://httpbin.org/post",
+            thumbnailWidth: 100,
+            thumbnailHeight: 150,
+            addRemovedLinks: false,
+            maxFilesize: 0.5,
+            acceptedFiles: ".png, .jpg, .jpg",
+            dictDefaultMessage: `
+            <span class='h5'>Drop a file.</span> <br><br> <button class='btn btn-success'>Or Browse</button>`,
         },
         res: []
       }
@@ -75,8 +73,10 @@
             const myJson = await response.json();  
             this.res.unshift(myJson.images[0].classifiers[0].classes[0]); 
             
-          this.images.push({src: downloadUrl})
-          this.$refs.imgDropzone.removeFile(file)
+          
+          this.$refs.imgDropzone.removeFile(file);
+
+          await imageRef.delete()
         }
         catch(e){
           console.error(e)
