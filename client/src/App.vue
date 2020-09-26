@@ -1,6 +1,9 @@
 <template>
   <div id='app'>
-    <div class='shadow rounded py-4 px-3 d-flex flex-column align-items-center'>
+    <Header/>
+
+    <div class="cointainer w-100 pt-5 d-flex justify-content-center align-items-center">
+    <div class='shadow rounded py-4 mt-3 px-3 d-flex flex-column align-items-center'>
 
     <h1 class="mt-5 pb-1 h4 jet">Is this recyclable? Check it out!</h1>
     <p class="text-muted h5 mb-5 pb-2">Drop a file and you are ready to go...</p>
@@ -16,7 +19,7 @@
         <div class="result-score">{{this.res[0].score}}</div>
       
     </div>
-
+  </div>
   </div>
 </template>
 
@@ -25,11 +28,13 @@
   import vue2Dropzone from 'vue2-dropzone'
   import "vue2-dropzone/dist/vue2Dropzone.min.css"
   const uuid = require("uuid");
+  import Header from "./components/Header.vue"
 
   export default {
     name: 'App',
     components: {
-      vueDropzone: vue2Dropzone
+      vueDropzone: vue2Dropzone,
+      Header
     },
     data(){
       return{
@@ -84,11 +89,8 @@
 
 <style>
 #app{
-  margin-top: 15vh;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
+  background-color: #f5f5f5 ;
+  height: 100vh;
 }
 h1{
   font-family: 'Montserrat', sans-serif;
