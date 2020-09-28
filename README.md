@@ -1,5 +1,3 @@
-<h1 align="center">Sorter</h1>
-
 ![sorterlogo](./assets/sorterimg.svg)
 
 > Go green, not mad
@@ -11,9 +9,19 @@ It divides waste into three categories:
 - Landfill
 - Recycle
 
+### Application flow
+
+1. The user uploads an image
+2. The image is stored in Firebase Storage
+3. The link from Firebase image goes to backend and is analized, returning the results.
+4. The image is deleted.
+
+![application flow](./assets/appFlow(en).png)
+ 
+
 Consider forking and making a pull request, or opening an issue. 😉
 
-Folder icon by [flaticon](https://www.flaticon.com/authors/dinosoftlabs)
+Icons by [flaticon](https://www.flaticon.com)
 
 ------
 
