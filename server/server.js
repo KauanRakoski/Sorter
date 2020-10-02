@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 var VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
 
+const PORT = process.env.PORT || 3030
 app.use(cors())
 dotenv.config()
 
@@ -35,5 +36,5 @@ app.get('/api/:l', (req, res) => {
   });
 })
 
-app.listen(3030, console.log('on'))
+app.listen(PORT)
 
