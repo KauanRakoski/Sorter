@@ -14,8 +14,8 @@
 
     <div class="result-container" v-if="this.res.length > 0">
       
-        <div class="result-name">{{this.res[0].class}}</div>
-        <div class="result-score">{{this.res[0].score}}</div>
+        <div class="result-name">{{ this.classification[this.res[0].class] }}</div>
+        <div class="result-score">{{this.decimalToPercent(this.res[0].score)}} certain</div>
       
     </div>
   </div>
@@ -46,7 +46,12 @@
             dictDefaultMessage: `
             <span class='h5'>Drop a file.</span> <br><br> <button class='btn btn-success'>Or Browse</button>`,
         },
-        res: []
+        res: [],
+        classification: {
+          "recycl.zip": "recyclable",
+          "compost.zip": "compost",
+          "landfill.zip": "landfill"
+        }
       }
     },
     methods: {
@@ -65,7 +70,7 @@
           const downloadUrl = await imageRef.getDownloadURL()
           
 
-            const response = await fetch(`http://localhost:3030/api/${downloadUrl.substr(76)}`, {
+            const response = await fetch(`https://sorter-backend.herokuapp.com/api/${downloadUrl.substr(76)}`, {
               method: 'GET'
             });
 
@@ -81,6 +86,11 @@
         catch(e){
           console.error(e)
         }
+      },
+      decimalToPercent: function(dec){
+        let toString = `${dec}`
+        let p = `${toString.substr(2, 2)}%`
+        return p
       }
     }
   }
