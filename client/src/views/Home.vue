@@ -12,12 +12,10 @@
 
     </div>
 
-    <div class="result-container" v-if="this.res.length > 0">
-      
-        <div class="result-name">{{ this.classification[this.res[0].class] }}</div>
-        <div class="result-score">{{this.decimalToPercent(this.res[0].score)}} certain</div>
-      
-    </div>
+    <transition name="fade">
+    <Analysis v-bind:score="res"/>
+    </transition>
+    
   </div>
   </div>
 </template>
@@ -27,12 +25,14 @@
   import vue2Dropzone from 'vue2-dropzone'
   import "vue2-dropzone/dist/vue2Dropzone.min.css"
   const uuid = require("uuid");
+  import Analysis from "../components/Analysis.vue"
   
 
   export default {
     name: 'App',
     components: {
       vueDropzone: vue2Dropzone,
+      Analysis
     },
     data(){
       return{
@@ -47,11 +47,7 @@
             <span class='h5'>Drop a file.</span> <br><br> <button class='btn btn-success'>Or Browse</button>`,
         },
         res: [],
-        classification: {
-          "recycl.zip": "recyclable",
-          "compost.zip": "compost",
-          "landfill.zip": "landfill"
-        }
+        
       }
     },
     methods: {
@@ -87,11 +83,7 @@
           console.error(e)
         }
       },
-      decimalToPercent: function(dec){
-        let toString = `${dec}`
-        let p = `${toString.substr(2, 2)}%`
-        return p
-      }
+      
     }
   }
 </script>
@@ -109,26 +101,7 @@ h1{
   width: 490px;
   height: 200px;
 }
-.result-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  border-radius: 4px;
-  width: 500px;
-  margin: 20px auto;
-  padding: 1em;
-  box-shadow: 2px 2px 3px rgba(10, 10, 10, 0.4), -2px -2px 2px rgba(10, 10, 10, 0.3);
-}
-.result-name{
-  font-family: 'Montserrat', sans-serif;
-  font-size:20px;
-}
-.result-score{
-  font-family: 'Montserrat', sans-serif;
-  font-size:20px;
-  font-weight: bolder;
-  color: rgb(95, 250, 95);
-}
+
 .jet{
   font-family: 'JetBrains Mono', sans-serif;
 }
