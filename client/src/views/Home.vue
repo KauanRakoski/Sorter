@@ -41,7 +41,7 @@
             thumbnailWidth: 100,
             thumbnailHeight: 150,
             addRemovedLinks: false,
-            maxFilesize: 0.5,
+            maxFilesize: 10,
             acceptedFiles: ".png, .jpg, .jpg",
             dictDefaultMessage: `
             <span class='h5'>Drop a file.</span> <br><br> <button class='btn btn-success'>Or Browse</button>`,
