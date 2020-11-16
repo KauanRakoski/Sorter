@@ -6,7 +6,13 @@ const cors = require('cors');
 var VisualRecognitionV3 = require('watson-developer-cloud/visual-recognition/v3');
 
 const PORT = process.env.PORT || 3030
-app.use(cors())
+
+corsConfig ={
+  origin: 'https://sorter.vercel.app',
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsConfig))
 dotenv.config()
 
 const visualRecognition = new VisualRecognitionV3({
@@ -27,11 +33,10 @@ app.get('/api/:l', (req, res) => {
 
   visualRecognition.classify(params, function (err, response) {
     if (err) {
-      res.send("ohm, no");
-      console.error(err)
+      
     } else {
       res.send(JSON.stringify(response, null, 2))
-      console.log("fone")
+      
     }
   });
 })
